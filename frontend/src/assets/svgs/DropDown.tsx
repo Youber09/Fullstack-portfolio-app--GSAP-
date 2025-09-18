@@ -1,0 +1,22 @@
+
+const DropDown = ({rotated} : {rotated: boolean}) => {
+  return (
+    <svg
+        className={`h-[1.8vw] w-[1.8vw] ${rotated ? `rotate-180` : `rotate-0`} transition-all origin-center`}
+        xmlns="http://www.w3.org/2000/svg"
+        width="800"
+        height="800"
+        fill="none"
+        viewBox="0 0 24 24"
+    >
+        <path
+        fill="#fff"
+        fillRule="evenodd"
+        d="M12.707 14.707a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L12 12.586l4.293-4.293a1 1 0 1 1 1.414 1.414z"
+        clipRule="evenodd"
+        ></path>
+    </svg>
+  )
+}
+
+export default DropDown

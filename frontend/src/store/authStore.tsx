@@ -1,0 +1,78 @@
+import {create} from 'zustand'
+import axios from 'axios'
+
+const URL = `http://localhost:5000/api/auth`
+
+axios.defaults.withCredentials = true
+
+export const useAuthStore = create((set) => ({
+    user: null,
+    isAuthenticated: false,
+    error: null,
+    isCheckingAuth: true,
+    isLoading: false,
+
+    signup: async (email: string,password: string,name: string) => {
+        set({isLoading: true, error: null})
+
+        try{
+            const response = await axios.post(`${URL}/signup`, {email,password,name})
+            set({user: response.data.user, isAuthenticated: true, isLoading: false})
+        }catch(error : any){
+            set({error: error.response.data.message || `Trouble signing up`, isLoading: false})
+            throw error
+        }
+    },
+    verifyEmail: async (Code : string) => {
+        set({isLoading: true, error: null})
+        try {
+            const response = await axios.post(`${URL}/verify-email`, {Code})
+            set({user: response.data.user, isAuthenticated: true, isLoading: false})
+        } catch (error: any) {
+            set({error: error.response.data.message || `Trouble verifying email`, isLoading: false})
+            throw error
+        }
+    },
+    checkAuth: async () => {
+        set({ isCheckingAuth : true , error: null})
+
+        try {
+
+            const response = await axios.post(`${URL}/check-auth`)
+            set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true})
+
+        } catch (error) {
+
+            set({error: null, isCheckingAuth: false, isAuthenticated: false})
+            
+        }
+
+        
+    },
+    login: async () => {
+        set({ isCheckingAuth : true , error: null})
+
+        try {
+
+            const response = await axios.post(`${URL}/login`)
+            set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true})
+            
+        } catch (error) {
+            set({error: null, isCheckingAuth: false, isAuthenticated: false})
+            throw Error
+        }
+    },
+    logout: async () => {
+        set({ isCheckingAuth : true , error: null})
+
+        try {
+
+            const response = await axios.post(`${URL}/logout`)
+            set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true})
+            
+        } catch (error) {
+            set({error: null, isCheckingAuth: false, isAuthenticated: false})
+            throw Error
+        }
+    }
+}))

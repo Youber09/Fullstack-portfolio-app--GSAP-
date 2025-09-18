@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "tailwindcss-motion";
+@import "tailwindcss-animated";
+
+.crucks::before{
+    @apply absolute w-[0%] bg-white h-[0.2vw] bottom-0 transition-all duration-200
+}
+
+.crucks:hover::before{
+    width: 100%;
+}
+
+.cruckss::before{
+    @apply absolute w-[0%] bg-white h-[0.2vw] bottom-[-50%] transition-all duration-200
+}
+
+.cruckss:hover::before{
+    width: 100%;
+}
+
+
+.light-ray {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.1) 20deg,
+    transparent 40deg
+  );
+}
+
+@keyframes upAndDown {
+  0%{
+    transform: translateY(-15%);
+  }50%{
+    transform: translateY(0%);
+  }100%{
+    transform: translateY(-15%);
+  }
+}
+
+@keyframes upAndDown2 {
+  0%{
+    transform: translateY(2%);
+  }50%{
+    transform: translateY(-1%);
+  }100%{
+    transform: translateY(2%);
+  }
+}
+
+
+@keyframes upAndDownCaca {
+  0%{
+    transform: translateY(6%) translateX(.2%);
+  }50%{
+    transform: translateY(3%) translateX(.2%);
+  }100%{
+    transform: translateY(6%) translateX(.2%);
+  }
+}
+
+@keyframes upAndDownCaca2 {
+  0%{
+    translate: 0% -40%;
+  }50%{
+    translate: 0% -35%;
+  }100%{
+    translate: 0% -40%;
+  }
+}
+
+
+.upDown {
+  animation: upAndDown 5s ease-in-out infinite;
+}
+
+.upDown2 {
+  animation: upAndDown2 5s ease-in-out infinite;
+}
+
+.upDown3 {
+  animation: upAndDown2 5s ease-in-out infinite 2s;
+}
+
+.upDownCaca {
+  animation: upAndDownCaca 5s ease-in-out infinite;
+}
+
+.upDownCaca2 {
+  animation: upAndDownCaca2 5s ease-in-out infinite;
+}
+
+.grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) clamp(0.01px,0.1vw,100px), transparent clamp(0.01px,0.1vw,100px)),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) clamp(0.01px,0.1vw,100px), transparent clamp(0.01px,0.1vw,100px));
+  background-size: clamp(1px, 3vw, 6000px) clamp(1px, 3vw, 6000px);
+}
+
+.sweep::before{
+  transition: all;
+  transition-duration: 700ms;
+  transition-timing-function: ease-in-out;
+  @apply h-[250%] rotate-40 absolute w-[10%] scale-150 translate-y-[-10%] opacity-70  blur-[clamp(1px,0.2vw,400px)] top-0 left-[-40%] bg-white
+}
+
+.sweep:hover::before{
+  @apply left-[120%]
+}
+
+.back:hover::before {
+  @apply absolute top-0 left-0 h-[150%] w-[110%] translate-y-[-60%] translate-x-[50%] bg-pink-400 motion-preset-spin motion-duration-[3000ms] origin-bottom-left
+}
+
+.SVGs::after{
+  @apply h-full w-full rounded-[clamp(0.1px,0.4vw,1000px)] absolute bg-white/0 top-0 left-[50%] translate-x-[-50%] -z-1 ;
+    transition: all 500ms;
+}
+
+.SVGs:hover::after{
+  @apply bg-white/10
+
+}
+
+
+.colors::after{
+  @apply h-full w-full rounded-[clamp(0.1px,0.4vw,1000px)] absolute bg-white/0 top-0 left-[50%] translate-x-[-50%] -z-1 ;
+    transition: all 500ms;
+}
+
+.colors:hover::after{
+  @apply bg-white/10
+
+}
+
+
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spins {
+  from {
+    --angle: 0deg
+  }to{
+    --angle: 360deg
+  }
+}
+
+
+
+.glowBG::before{
+  background-image: conic-gradient(from var(--angle),transparent 70%, rgb(8, 211, 22));
+  animation: 10s spins infinite linear;
+  @apply absolute h-[101%] w-[102.5%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] -z-1 rounded-[clamp(0.1px,1vw,1000px)]
+}
+
+.glowBG::after{
+  background-image: conic-gradient(from var(--angle),transparent 70%, rgb(8, 211, 22));
+  animation: 10s spins infinite linear;
+  @apply absolute h-[101%] w-[102.5%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] -z-1 rounded-[clamp(0.1px,1vw,1000px)] blur-[clamp(0.1px,1vw,1000px)]
+}
+
+.glowings::before{
+  @apply bg-white h-full w-full translate-x-[-50%] opacity-0 transition-all duration-500 rounded-full
+}
+
+.glowings:hover::before{
+  @apply  blur-[2vw] opacity-50
+}
+
