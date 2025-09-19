@@ -38,11 +38,13 @@ export const useAuthStore = create((set) => ({
 
         try {
 
+            
             const response = await axios.post(`${URL}/check-auth`)
             set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true})
 
-        } catch (error) {
-
+        } catch (error: any) {
+            
+            console.log(error.response.data)
 
             set({error: null, isCheckingAuth: false, isAuthenticated: false})
             

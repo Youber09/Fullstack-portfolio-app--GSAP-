@@ -13,7 +13,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
 
-  const {checkAuth,isCheckingAuth,user,isAuthenticated,logout} = useAuthStore() as {checkAuth : Function, isCheckingAuth : boolean,user: any,isAuthenticated: boolean, logout: Function}
+  const {checkAuth,user,isAuthenticated,logout} = useAuthStore() as {checkAuth : Function, isCheckingAuth : boolean,user: any,isAuthenticated: boolean, logout: Function}
   const [rotate,setRotate] = React.useState(false)
 
   React.useEffect(()=> {
@@ -33,6 +33,7 @@ function RootComponent() {
 
 
 
+
   return (
     <React.Fragment>
       
@@ -47,21 +48,22 @@ function RootComponent() {
 
               {(user && isAuthenticated) ?
 
-              <div className='flex items-center '>
+              <div className='flex items-center h-[4vw]'>
 
                 <div className='relative' >
                   <p onClick={() => setRotate(rotate => {
                     return !rotate
-                  })}  className=' text-[1.2vw] font-[Oswald] font-normal tracking-wider border-white/20 border-[0.1vw] rounded-[0.3vw] py-[10%] flex justify-center items-center w-[8vw] cursor-pointer hover:bg-white/5 transition-all active:scale-90 select-none'>
-                    {user.name}
+                  })}  className={`  text-[1.2vw] font-[Oswald] font-normal tracking-wider border-white/20 border-[0.1vw] rounded-[0.3vw] py-[0.7vw] px-[20%] flex justify-center items-center cursor-pointer hover:bg-white/5 transition-all active:scale-90 select-none max-w-[20vw] relative`}>
+                    <p className='mr-[2vw] relative px-[1vw]'>{user.name}</p>
+                    
                     <DropDown rotated={rotate} />
                   </p>
 
-                  <ul className={`text-[1vw] font-medium flex flex-col space-y-[0.6vw] absolute bg-black/80 left-[50%] translate-x-[-50%] w-[150%] rounded-[0.3vw] mt-[5%] p-[10%] px-[40%] transition-all ${rotate ? `` : `hidden`}`} >
+                  <ul className={`text-[1vw] font-medium flex flex-col space-y-[0.3vw] absolute bg-black/80 left-[50%] translate-x-[-50%] w-[15vw] py-[1vw] px-[2vw] rounded-[0.3vw]  transition-all ${rotate ? `` : `hidden`}`} >
 
-                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] group w-[10vw]'><Settigns />Settings</p></button>
-                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[10vw]' onClick={() => {LogoutHandle();window.location.reload()}}><Logout />Log out</p></button>
-                    {user.isVerified ? `` : <Link to={`/verification/verify-email`} className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[10vw] flex justify-center'><Verify />Verify</p></Link>}
+                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[8vw] group'><Settigns />Settings</p></button>
+                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[8vw]' onClick={() => {LogoutHandle();window.location.reload()}}><Logout />Log out</p></button>
+                    {user.isVerified ? `` : <Link to={`/verification/verify-email`} className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[8vw] flex justify-center'><Verify />Verify</p></Link>}
 
                   </ul>
                   

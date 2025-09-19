@@ -259,6 +259,9 @@ export const checkAuth = async (req,res) => {
 
     const userId = req.userId
 
+
+    if (!userId) res.status(400).json({success: false, message: `User doesn't have the right cookies`})
+
     try {
 
         const user = await User.findById(userId).select(`-password`)

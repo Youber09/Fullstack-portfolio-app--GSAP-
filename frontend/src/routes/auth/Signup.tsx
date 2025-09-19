@@ -29,7 +29,7 @@ function RouteComponent() {
       try {
 
         await signup(value)
-        navigate({to: '/verification/verify-email'})
+        await navigate({to: '/verification/verify-email'})
         window.location.reload()
 
       } catch (error) {
@@ -106,6 +106,7 @@ function RouteComponent() {
               onChangeAsyncDebounceMs: 500,
               onChangeAsync: value => {
                 if (value.value.length < 3) return `Name must be longer than 3 character`
+                if (value.value.length > 18) return `Name must be shorter than 18 character`
               }
             }} children={(field) => {
               return <>
@@ -116,7 +117,12 @@ function RouteComponent() {
               </>
             }} />
 
-            <form.Field name='email' children={(field) => {
+            <form.Field name='email' validators={{
+              onChangeAsyncDebounceMs: 500,
+              onChangeAsync: (value) => {
+                if (!email.test(value.value)) return `Please enter a valid email`
+              }
+            }} children={(field) => {
               return <><input className='outline-0 border-[0.2vw] border-white/10 rounded-[0.5vw] p-[2%] px-[3%] placeholder:text-[1.2vw] text-[1.2vw] bg-stone-950' type='email' name='' id='email'  placeholder='Email' value={field.state.value} onChange={(e) => {field.handleChange(e.target.value)}}/>
                 {field.state.meta.errors && <div className='text-red-500 text-[0.8vw] ml-[3%]'>
                     {field.state.meta.errors}

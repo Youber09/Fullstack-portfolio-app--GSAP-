@@ -22,7 +22,7 @@ function RouteComponent() {
       
       try {
         await login(value)
-        navigate({to: `/`})
+        await navigate({to: `/`})
         window.location.reload()
       } catch (error) {
         console.log(error)

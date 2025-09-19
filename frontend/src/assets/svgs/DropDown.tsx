@@ -2,7 +2,7 @@
 const DropDown = ({rotated} : {rotated: boolean}) => {
   return (
     <svg
-        className={`h-[1.8vw] w-[1.8vw] ${rotated ? `rotate-180` : `rotate-0`} transition-all origin-center`}
+        className={`h-[2vw] w-[3vw] absolute right-0 translate-x-[-10%] ${rotated ? `rotate-180` : `rotate-0`} transition-all origin-center`}
         xmlns="http://www.w3.org/2000/svg"
         width="800"
         height="800"

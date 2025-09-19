@@ -5,14 +5,14 @@ export const Route = createFileRoute('/auth')({
   component: RouteComponent,
   beforeLoad: async () => {
 
-    const {isCheckingAuth,checkAuth} = useAuthStore.getState() as {isAuthenticated : boolean, user: any,isCheckingAuth: boolean,checkAuth: Function}
+    const {isCheckingAuth,checkAuth} = useAuthStore.getState() as {isAuthenticated : boolean, user: any,isCheckingAuth: boolean,checkAuth: Function, error: any}
     
 
     if (isCheckingAuth){
       try {
         await checkAuth()
-      } catch (error) {
-        console.log(error)
+      } catch (err) {
+        console.log(err)
       }
       
     }
