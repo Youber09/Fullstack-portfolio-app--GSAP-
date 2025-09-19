@@ -60,7 +60,7 @@ function RootComponent() {
                   <ul className={`text-[1vw] font-medium flex flex-col space-y-[0.6vw] absolute bg-black/80 left-[50%] translate-x-[-50%] w-[150%] rounded-[0.3vw] mt-[5%] p-[10%] px-[40%] transition-all ${rotate ? `` : `hidden`}`} >
 
                     <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] group w-[10vw]'><Settigns />Settings</p></button>
-                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[10vw]' onClick={LogoutHandle}><Logout />Log out</p></button>
+                    <button className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[10vw]' onClick={() => {LogoutHandle();window.location.reload()}}><Logout />Log out</p></button>
                     {user.isVerified ? `` : <Link to={`/verification/verify-email`} className='flex justify-center'><p className='relative hover:bg-white/10 p-[10%] cursor-pointer transition-all rounded-[1vw] w-[10vw] flex justify-center'><Verify />Verify</p></Link>}
 
                   </ul>

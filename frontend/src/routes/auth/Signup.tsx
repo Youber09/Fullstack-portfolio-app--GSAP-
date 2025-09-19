@@ -30,6 +30,7 @@ function RouteComponent() {
 
         await signup(value)
         navigate({to: '/verification/verify-email'})
+        window.location.reload()
 
       } catch (error) {
         console.log(error)

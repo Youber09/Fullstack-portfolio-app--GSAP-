@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { useAuthStore } from '../store/authStore'
 
 export const Route = createFileRoute('/auth')({
@@ -9,7 +9,12 @@ export const Route = createFileRoute('/auth')({
     
 
     if (isCheckingAuth){
-      await checkAuth()
+      try {
+        await checkAuth()
+      } catch (error) {
+        console.log(error)
+      }
+      
     }
 
     const {isAuthenticated,user} = useAuthStore.getState() as {isAuthenticated : boolean, user: any,isCheckingAuth: boolean,checkAuth: Function}
