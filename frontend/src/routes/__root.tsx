@@ -5,6 +5,9 @@ import DropDown from '../assets/svgs/DropDown'
 import Settigns from '../assets/svgs/Settigns'
 import Logout from '../assets/svgs/Logout'
 import Verify from '../assets/svgs/Verify'
+import Loading from '../components/Loading'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -13,7 +16,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
 
-  const {checkAuth,user,isAuthenticated,logout} = useAuthStore() as {checkAuth : Function, isCheckingAuth : boolean,user: any,isAuthenticated: boolean, logout: Function}
+  const {checkAuth,user,isAuthenticated,logout,isCheckingAuth} = useAuthStore() as {checkAuth : Function, isCheckingAuth : boolean,user: any,isAuthenticated: boolean, logout: Function}
   const [rotate,setRotate] = React.useState(false)
 
   React.useEffect(()=> {
@@ -30,12 +33,36 @@ function RootComponent() {
 
   }
 
+  // useGSAP(async () => {
+
+  //   const LoadingTL = gsap.timeline({
+
+  //   })
+
+  //   LoadingTL.to(`.LoadingText`,{
+  //     y: `600%`,
+  //     duration: 1,
+  //     ease: `power3.in`,
+  //     delay: .5
+  //   }).to(`.LoadingAnimation`, {
+  //     y: `-100%`,
+  //     duration: 1,
+  //     ease: `power3.in`
+  //   })
+
+
+    
+
+  // },[isCheckingAuth])
 
 
 
+  if (isCheckingAuth) return <Loading className='' className2='' />
 
   return (
     <React.Fragment>
+
+        {/* <Loading className='LoadingAnimation' className2='LoadingText' /> */}
       
         <nav className='flex justify-between items-center p-[1%] px-[5%] h-[10%] border-b-1 border-white/0 relative bg-black grid-bg w-full top-0 z-20'>
             <button className='font-[Oswald] font-bold text-[clamp(1px,1.5vw,200px)] cursor-pointer crucks before:absolute relative'>Crucks</button>

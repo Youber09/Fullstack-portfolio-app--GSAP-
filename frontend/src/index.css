@@ -171,4 +171,3 @@
 .glowings:hover::before{
   @apply  blur-[2vw] opacity-50
 }
-

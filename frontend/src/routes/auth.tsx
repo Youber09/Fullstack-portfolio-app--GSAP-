@@ -25,16 +25,15 @@ export const Route = createFileRoute('/auth')({
       throw redirect({to: '/'})
     }
 
-  }
+  },
 })
 
 function RouteComponent() {
-  
 
   return <div>
        
       <Outlet />
-        
-        
+
+      
     </div>
 }
