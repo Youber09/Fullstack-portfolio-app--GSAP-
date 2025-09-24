@@ -74,7 +74,7 @@ function RouteComponent() {
           </>
         }} />
 
-        <div className='text-end text-[1vw] font-[Oswald] mt-[2%] font-light text-white/50 w-full flex justify-end' ><p className='cursor-pointer w-fit'>Forgot password ?</p></div>
+        <div className='text-end text-[1vw] font-[Oswald] mt-[2%] font-light text-white/50 w-full flex justify-end' ><Link to={`/auth/forgot-password`} className='cursor-pointer w-fit'>Forgot password ?</Link></div>
         <button disabled={isLoading} type='submit' className=' disabled:bg-gray-800 disabled:hover:scale-100 bg-fuchsia-500 text-black rounded-[0.5vw] mt-[2%] p-[2.5%] font-[Oswald] font-bold text-[1.9vw] cursor-pointer sweep before:absolute overflow-hidden relative hover:scale-102 transition-all flex justify-center'>{isLoading ? <Loading /> : 'Log in'}</button>
         {error ? <p className='text-[1.3vw] text-red-500 font-light text-center w-full mt-[2%] font-[Oswald] tracking-wider'>{error}</p> : <></>}
       </form>

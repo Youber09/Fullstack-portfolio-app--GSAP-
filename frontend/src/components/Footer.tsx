@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center gap-[3vw] p-[5%] bg-black text-base-content rounded">
+    <footer className="footer footer-horizontal footer-center gap-[3vw] p-[5%] h-[30vw] bg-black text-base-content">
   <nav className="grid grid-flow-col gap-[clamp(1px,3vw,1000px)]">
     <a className=" text-[clamp(1px,2vw,1000px)] font-[Oswald] font-medium  cruckss before:absolute relative cursor-pointer">About us</a>
     <a className=" text-[clamp(1px,2vw,1000px)] font-[Oswald] font-medium  cruckss before:absolute relative cursor-pointer">Contact</a>
