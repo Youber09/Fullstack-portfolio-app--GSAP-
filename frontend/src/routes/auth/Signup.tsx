@@ -1,6 +1,6 @@
 import { useForm } from '@tanstack/react-form'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Authentication from '../../components/Authentication.tsx'
 import { useAuthStore } from '../../store/authStore.tsx'
 import Loading from '../../assets/svgs/Loading.tsx'
@@ -15,7 +15,10 @@ function RouteComponent() {
   const navigate = useNavigate()
 
 
-  const {signup,error,isLoading} = useAuthStore() as {signup: Function, error: any, isLoading: boolean}
+  const {signup,error,isLoading,removeError} = useAuthStore() as {signup: Function, error: any, isLoading: boolean,removeError: Function}
+  useEffect(() => {
+      removeError()
+    },[])
 
 
 

@@ -3,6 +3,7 @@ import Authentication from '../../components/Authentication'
 import { useForm } from '@tanstack/react-form'
 import { useAuthStore } from '../../store/authStore'
 import Loading from '../../assets/svgs/Loading'
+import { useEffect, useState } from 'react'
 
 export const Route = createFileRoute('/auth/forgot-password')({
   component: RouteComponent,
@@ -10,7 +11,12 @@ export const Route = createFileRoute('/auth/forgot-password')({
 
 function RouteComponent() {
 
-  const {isLoading, forgotPassword, error} = useAuthStore() as {isLoading: boolean, forgotPassword: Function, error: any} 
+  const {isLoading, forgotPassword, error,removeError} = useAuthStore() as {isLoading: boolean, forgotPassword: Function, error: any, removeError: Function} 
+  useEffect(() => {
+      removeError()
+    },[])
+  
+  const [info,setInfo] = useState(``)
 
 
   const form = useForm({
@@ -18,7 +24,17 @@ function RouteComponent() {
       email: ``
     },
     onSubmit: async (value) => {
-      await forgotPassword({email : value.value.email})
+
+      try {
+        
+        await forgotPassword({email : value.value.email})
+        setInfo(`We sent an email with a reset password link`)
+
+      } catch (error) {
+        console.log(error)
+        setInfo(``)
+      }
+      
     }
   })
 
@@ -53,6 +69,7 @@ function RouteComponent() {
 
         <button disabled={isLoading} type='submit' className='mt-[5%] disabled:bg-gray-800 disabled:hover:scale-100 bg-fuchsia-500 text-black rounded-[0.5vw] p-[2.5%] font-[Oswald] font-bold text-[1.9vw] cursor-pointer sweep before:absolute overflow-hidden relative hover:scale-102 transition-all flex justify-center'>{isLoading ? <Loading /> : 'Send'}</button>
         {error ? <p className='text-[1.3vw] text-red-500 font-light text-center w-full mt-[2%] font-[Oswald] tracking-wider'>{error}</p> : <></>}
+        <p className=' text-[1.2vw] font-[Oswald] font-light text-green-300/70 text-center mt-[1vw]'>{info}</p>
 
       </form>
 

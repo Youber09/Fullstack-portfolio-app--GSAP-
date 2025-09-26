@@ -2,6 +2,7 @@ import { useForm } from '@tanstack/react-form'
 import { createFileRoute, useNavigate, useParams } from '@tanstack/react-router'
 import { useAuthStore } from '../../../store/authStore'
 import Loading from '../../../assets/svgs/Loading'
+import { useEffect } from 'react'
 
 export const Route = createFileRoute('/auth/reset-password/$token')({
   component: RouteComponent,
@@ -10,7 +11,11 @@ export const Route = createFileRoute('/auth/reset-password/$token')({
 function RouteComponent() {
 
   const {token} = useParams({from: '/auth/reset-password/$token'}) as {token: string}
-  const {resetPassword,error, isLoading} = useAuthStore() as {resetPassword: Function, error: any, isLoading: boolean}
+  const {resetPassword,error, isLoading,removeError} = useAuthStore() as {resetPassword: Function, error: any, isLoading: boolean,removeError: Function}
+
+  useEffect(() => {
+      removeError()
+    },[])
   const navigate = useNavigate()
 
 

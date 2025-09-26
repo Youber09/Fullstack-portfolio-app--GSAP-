@@ -65,7 +65,7 @@ export const useAuthStore = create((set) => ({
             set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true, isLoading: false})
             
         } catch (error: any) {
-            set({error: error.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
+            set({error: error.response.data.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
             throw Error
         }
     },
@@ -88,11 +88,13 @@ export const useAuthStore = create((set) => ({
 
          try {
 
+
             const response = await axios.post(`${URL}/forgot-password`, {email})
+            console.log(response.data)
             set({isCheckingAuth: false, user: response.data.user, isAuthenticated: true, isLoading: false})
             
         } catch (error: any) {
-            set({error: error.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
+            set({error: error.response.data.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
             throw Error
         }
 
@@ -108,9 +110,12 @@ export const useAuthStore = create((set) => ({
             
         } catch (error: any) {
             console.log( error)
-            set({error: error.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
+            set({error: error.response.data.message, isCheckingAuth: false, isAuthenticated: false, isLoading: false})
             throw Error
         }
 
+    },
+    removeError: () => {
+        set({error: null})
     }
 }))
